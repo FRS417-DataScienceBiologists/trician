@@ -250,8 +250,20 @@ filter(fish, scalelength>=11)
 5. Filter the data to include fish only from lake AL and with a scalelength greater than or equal to 2 and less than or equal to 4.
 
 ```{r}
-filter(fish, lakeid=="AL" & scalelength>=2 & scalelength <=4)
+filter(fish, lakeid=="AL",
+       scalelength>=2 & scalelength <=4)
 ```
 /
+## Pipes
+```{r}
+fish %>%
+  filter(lakeid=="AL")
+```
+## select()
+```{r}
+fish %>% 
+  select(lakeid, scalelength)
+  filter(fish, lakeid=="AL",
+       scalelength>=2 & scalelength <=4)
+```
 
-That's it, let's take a break!
