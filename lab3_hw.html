@@ -375,9 +375,25 @@ fisheries_tidy</code></pre>
     )</code></pre>
 <pre><code>## Warning in evalq(as.numeric(str_replace(catch, c(&quot; F&quot;, &quot;...&quot;, &quot;-&quot;),
 ## replacement = &quot;&quot;)), : NAs introduced by coercion</code></pre>
+<pre class="r"><code>fisheries_tidy</code></pre>
+<pre><code>## # A tibble: 1,114,596 x 10
+##    country commname Species..ISSCAA… spgroupname spcode sciname region
+##    &lt;chr&gt;   &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt;
+##  1 Albania Angelsh…               38 Sharks, ra… 10903… Squati…     37
+##  2 Albania Atlanti…               36 Tunas, bon… 17501… Sarda …     37
+##  3 Albania Barracu…               37 Miscellane… 17710… Sphyra…     37
+##  4 Albania Blue an…               45 Shrimps, p… 22802… Ariste…     37
+##  5 Albania Blue wh…               32 Cods, hake… 14804… Microm…     37
+##  6 Albania Bluefish               37 Miscellane… 17020… Pomato…     37
+##  7 Albania Bogue                  33 Miscellane… 17039… Boops …     37
+##  8 Albania Caramot…               45 Shrimps, p… 22801… Penaeu…     37
+##  9 Albania Catshar…               38 Sharks, ra… 10801… Scylio…     37
+## 10 Albania Common …               57 Squids, cu… 32102… Sepia …     37
+## # … with 1,114,586 more rows, and 3 more variables: unit &lt;chr&gt;,
+## #   year &lt;dbl&gt;, catch &lt;dbl&gt;</code></pre>
 <ol start="8" style="list-style-type: decimal">
 <li><p>Are the data tidy? Why?<br />
-The data is not tidy, because the values are still under “variables” rather than names.</p></li>
+The data is tidy because each variable has its own place and the variables are sorted under specific column names.</p></li>
 <li><p>You are a fisheries scientist studying cephalopod catch during 2008-2012. Identify the top five consumers (by country) of cephalopods (don’t worry about species for now). Restrict the data frame only to our variables of interest.</p></li>
 </ol>
 <pre class="r"><code>fisheries_tidy &lt;- fisheries_tidy %&gt;% 

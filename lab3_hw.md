@@ -231,8 +231,30 @@ fisheries_tidy <- fisheries_tidy %>%
 ## replacement = "")), : NAs introduced by coercion
 ```
 
+```r
+fisheries_tidy
+```
+
+```
+## # A tibble: 1,114,596 x 10
+##    country commname Species..ISSCAA… spgroupname spcode sciname region
+##    <chr>   <chr>               <dbl> <chr>       <chr>  <chr>    <dbl>
+##  1 Albania Angelsh…               38 Sharks, ra… 10903… Squati…     37
+##  2 Albania Atlanti…               36 Tunas, bon… 17501… Sarda …     37
+##  3 Albania Barracu…               37 Miscellane… 17710… Sphyra…     37
+##  4 Albania Blue an…               45 Shrimps, p… 22802… Ariste…     37
+##  5 Albania Blue wh…               32 Cods, hake… 14804… Microm…     37
+##  6 Albania Bluefish               37 Miscellane… 17020… Pomato…     37
+##  7 Albania Bogue                  33 Miscellane… 17039… Boops …     37
+##  8 Albania Caramot…               45 Shrimps, p… 22801… Penaeu…     37
+##  9 Albania Catshar…               38 Sharks, ra… 10801… Scylio…     37
+## 10 Albania Common …               57 Squids, cu… 32102… Sepia …     37
+## # … with 1,114,586 more rows, and 3 more variables: unit <chr>,
+## #   year <dbl>, catch <dbl>
+```
+
 8. Are the data tidy? Why?  
-The data is not tidy, because the values are still under "variables" rather than names.
+The data is tidy because each variable has its own place and the variables are sorted under specific column names. 
 
 9. You are a fisheries scientist studying cephalopod catch during 2008-2012. Identify the top five consumers (by country) of cephalopods (don't worry about species for now). Restrict the data frame only to our variables of interest.
 
