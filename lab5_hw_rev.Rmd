@@ -137,7 +137,7 @@ lifehistories1 %>%
 10. Make a plot that shows the range of lifespan by order.
 ```{r}
 lifehistories %>% 
-  ggplot(aes(x=order, y=max_life, color=order))+
+  ggplot(aes(x=order, y=max_life, fill=order))+
   geom_boxplot()+
   coord_flip()+
   scale_y_log10()
