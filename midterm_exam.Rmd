@@ -47,10 +47,6 @@ names(colleges)
 5. Are there any NA's in the data? If so, how many are present and in which variables?
 
 ```{r}
-colleges %>% 
-  summarize(number_nas= sum(is.na(colleges)))
-```
-```{r}
 colleges %>%
   purrr::map_df(~ sum(is.na(.)))%>% 
   tidyr::gather(variables, num_nas) %>% 
@@ -66,20 +62,24 @@ colleges %>%
   arrange(desc(total))
 ```
 
+
 7. The column `COSTT4_A` is the annual cost of each institution. Which city has the highest cost?
 
 ```{r}
 colleges %>% 
   group_by(CITY) %>% 
-  select(COSTT4_A) %>% 
-  arrange(desc(COSTT4_A))
+  summarize(mean_cost_yr=mean(COSTT4_A, na.rm=TRUE),
+            total=n()) %>% 
+  arrange(desc(mean_cost_yr))
 ```
+
 
 8. The column `ADM_RATE` is the admissions rate by college and `C150_4_POOLED` is the four-year completion rate. Use a scatterplot to show the relationship between these two variables. What does this mean?
 ```{r}
 colleges %>% 
   ggplot(aes(x=ADM_RATE, y=C150_4_POOLED))+
-  geom_point()
+  geom_point()+
+  geom_smooth(method=lm)
 ```
 
 
@@ -94,26 +94,29 @@ univ_calif
 
 
 10. Use `separate()` to separate institution name into two new columns "UNIV" and "CAMPUS".
+
 ```{r}
-colleges %>% 
-  separate(INSTNM, into= c("UNIV", "CAMPUS"), sep = "_")
+univ_calif <- 
+  univ_calif %>% 
+  separate(INSTNM, into= c("UNIV", "CAMPUS"), sep="-")
+univ_calif
 ```
 
 11. As a final step, remove `Hastings College of Law` and `UC San Francisco` and store the final data frame as a new object `univ_calif_final`.
 
 ```{r}
-univ_calif_final <-
-colleges %>% 
-  separate(INSTNM, into= c("UNIV", "CAMPUS"), sep = "_") %>% 
-  transmute('Hastings College of Law','UC San Francisco')
+univ_calif_final <- 
+  univ_calif %>% 
+  filter(CAMPUS !="Hastings College of Law",
+         CAMPUS !="San Francisco")
+univ_calif_final
 ```
-
 
 12. The column `ADM_RATE` is the admissions rate by campus. Which UC has the lowest and highest admissions rates? Please use a barplot.
 
 ```{r}
 univ_calif %>% 
-  ggplot(aes(x=INSTNM, y=ADM_RATE))+
+  ggplot(aes(x=CAMPUS, y=ADM_RATE))+
   geom_bar(stat="identity")+
   coord_flip()
 ```
